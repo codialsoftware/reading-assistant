@@ -1,0 +1,43 @@
+﻿<Window x:Class="ReadingAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrls="clr-namespace:ReadingAssistant.Controls"
+        xmlns:local="clr-namespace:ReadingAssistant"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <ctrls:TextRenderer Grid.Column="0"/>
+
+        <StackPanel Grid.Column="2"
+            Orientation="Vertical">
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button>Open file</Button>
+                <TextBox Grid.Column="1"
+                    Text="{Binding InputTextFilePath}" />
+            </Grid>
+            
+            <TextBlock>Highlight time</TextBlock>
+            <Slider 
+                Value="{Binding HighlightingSpeed}"
+                Minimum="0.2" Maximum="1.5" />
+            
+        </StackPanel>
+
+        <GridSplitter Grid.Column="1" />
+    </Grid>
+</Window>
