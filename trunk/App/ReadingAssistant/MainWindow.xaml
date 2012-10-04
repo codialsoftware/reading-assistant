@@ -3,11 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctrls="clr-namespace:ReadingAssistant.Controls"
         xmlns:local="clr-namespace:ReadingAssistant"
+        DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="350" Width="525">
-    <Window.DataContext>
-        <local:ViewModel />
-    </Window.DataContext>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -15,28 +12,46 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
-        <ctrls:TextRenderer Grid.Column="0"/>
+        <ctrls:TextRenderer Grid.Column="0"
+            Text="{Binding TextToRead}"/>
 
-        <StackPanel Grid.Column="2"
-            Orientation="Vertical">
+        <Grid Grid.Column="2">
+            <Grid.Resources>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             
-            <Grid>
+            <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Button>Open file</Button>
                 <TextBox Grid.Column="1"
+                    HorizontalAlignment="Stretch"
                     Text="{Binding InputTextFilePath}" />
             </Grid>
             
-            <TextBlock>Highlight time</TextBlock>
-            <Slider 
-                Value="{Binding HighlightingSpeed}"
-                Minimum="0.2" Maximum="1.5" />
-            
-        </StackPanel>
+            <TextBlock Grid.Row="1">Highlight time</TextBlock>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Slider HorizontalAlignment="Stretch"
+                    Value="{Binding HighlightingSpeed}"
+                    Minimum="0.2" Maximum="1.5" />
+                <TextBlock Grid.Column="1"
+                    Text="{Binding HighlightingSpeed, StringFormat=0.00}" />
+            </Grid>
+        </Grid>
 
         <GridSplitter Grid.Column="1" />
     </Grid>
