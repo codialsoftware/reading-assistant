@@ -12,7 +12,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
-        <ctrls:TextRenderer Grid.Column="0"
+        <ctrls:TextRenderer
             Text="{Binding TextToRead}"/>
 
         <Grid Grid.Column="2">
