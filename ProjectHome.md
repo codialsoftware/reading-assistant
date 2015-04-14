@@ -1,0 +1,1 @@
+Assists you while reading. Allows you to train your reading speed.
